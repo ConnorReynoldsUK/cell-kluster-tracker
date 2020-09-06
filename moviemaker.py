@@ -21,7 +21,7 @@ def natural_keys(text):
     '''
     return [ atof(c) for c in re.split(r'[+-]?([0-9]+(?:[.][0-9]*)?|[.][0-9]+)', text) ]
 
-for root, dirs, files in os.walk('%s/Plots/Exp2_k_means/thresholding/frame_by_frame' % os.getcwd(), topdown=False):
+for root, dirs, files in os.walk('%s/Plots/Exp1/Expo' % os.getcwd(), topdown=False):
     print(files)
     max_file = np.max([len(i) for i in files])
     files.sort(key=natural_keys)
@@ -33,7 +33,7 @@ for root, dirs, files in os.walk('%s/Plots/Exp2_k_means/thresholding/frame_by_fr
         print(img.shape)
         if video is None:
             height, width, a = img.shape
-            video = cv2.VideoWriter('plot_movie.avi', cv2.VideoWriter_fourcc(*"MJPG"), 10, (width, height))
+            video = cv2.VideoWriter('plot_movie.avi', cv2.VideoWriter_fourcc(*"MJPG"), 5, (width, height))
 
         video.write(img)
 

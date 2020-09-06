@@ -1,9 +1,11 @@
 import numpy as np
 from sklearn.cluster import KMeans
+import matplotlib.pyplot as plt
 
 class PerformCluster(object):
     def __init__(self, centroids_input):
         self.centroids_input = centroids_input
+        #self.centroids_input = self.centroids_input[0:int(len(self.centroids_input)*0.7)]
         self.k_number = None
 
     def km_cluster(self, centroids_flat):
@@ -49,7 +51,16 @@ class PerformCluster(object):
         x_perframe, y_perframe = self.cent_perframe(centroids, clusters, max_std_ind)
         print(len(y_perframe), len(y_perframe[0]))
 
-        return x_percluster, y_percluster, xi, yi
+        for n, i in enumerate(x_percluster):
+
+
+            plt.scatter(x_percluster[n], y_percluster[n], alpha=1, linewidths=0.1)
+        plt.xlim(0, 1600)
+        plt.ylim(0, 1200)
+        plt.show()
+        plt.clf()
+
+        return x_percluster, y_percluster, x_perframe, y_perframe, xi, yi
 
 
         #x, y = self.cent_perframe()

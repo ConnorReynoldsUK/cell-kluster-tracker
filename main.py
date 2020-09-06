@@ -1,10 +1,10 @@
 import cv2
 import numpy as np
 import time
-import movie_reader, laplacian_fitler, watershed, centroid_detection, cluster_centroids, run_kde
+import movie_reader, laplacian_fitler, watershed, centroid_detection, cluster_centroids, run_kde, kde_footprint
 import os
 
-test = movie_reader.MoviePlayer("%s/Data/Movies/Exp2_GFP-271017-11_2.avi" % os.getcwd())
+test = movie_reader.MoviePlayer("%s/Data/Movies/Exp3.avi" % os.getcwd())
 
 def run_detection(img_frame):
 
@@ -26,8 +26,8 @@ print(time.time()-prev_time)
 
 #k_clustering.KMeansClustering(cents, 3).k_means_plotter()
 #kde_plotter.KdePlotter(cents).k_cluster()
-x_, y_, xi, yi = cluster_centroids.PerformCluster(cents).export_clusters()
-run_kde.KdeRunner(x_, y_, xi, yi).plotter()
+x_c, y_c, x_f, y_f, xi, yi = cluster_centroids.PerformCluster(cents).export_clusters()
+kde_footprint.KdeRunner(x_c, y_c, x_f, y_f, xi, yi).plotter()
 # for n, frame in enumerate(frames):
 #     new_frame = laplacian_fitler.LaplacianSegmenter(frame, 60, 0).apply_filter()
 #     new_frame = watershed.WatershedTransform(new_frame).run_watershed()
